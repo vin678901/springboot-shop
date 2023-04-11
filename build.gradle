@@ -1,14 +1,14 @@
-buildscript {
-	ext {
-		queryDslVersion = "5.0.0"
-	}
-}
+//buildscript {
+//	ext {
+//		queryDslVersion = "5.0.0"
+//	}
+//}
 
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.5.6'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+//	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.example'
@@ -42,30 +42,33 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	testImplementation 'org.assertj:assertj-core:3.23.1'
-	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
-	implementation "com.querydsl:querydsl-core:${queryDslVersion}"
+//	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+//	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+//	implementation "com.querydsl:querydsl-core:${queryDslVersion}"
+	// https://mvnrepository.com/artifact/org.webjars/bootstrap
+	implementation 'org.webjars:bootstrap:5.2.3'
+
 }
-def querydslDir = "$buildDir/generated/querydsl"
-querydsl {
-	jpa = true
-	querydslSourcesDir = querydslDir
-}
-// build 시 사용할 sourceSet 추가
-sourceSets {
-	main.java.srcDir querydslDir
-}
-// querydsl 컴파일시 사용할 옵션 설정
-compileQuerydsl {
-	options.annotationProcessorPath = configurations.querydsl
-}
-//querydsl 이 compileClassPath 를 상속하도록 설정
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-	querydsl.extendsFrom compileClasspath
-}
+//def querydslDir = "$buildDir/generated/querydsl"
+//querydsl {
+//	jpa = true
+//	querydslSourcesDir = querydslDir
+//}
+//// build 시 사용할 sourceSet 추가
+//sourceSets {
+//	main.java.srcDir querydslDir
+//}
+//// querydsl 컴파일시 사용할 옵션 설정
+//compileQuerydsl {
+//	options.annotationProcessorPath = configurations.querydsl
+//}
+////querydsl 이 compileClassPath 를 상속하도록 설정
+//configurations {
+//	compileOnly {
+//		extendsFrom annotationProcessor
+//	}
+//	querydsl.extendsFrom compileClasspath
+//}
 
 tasks.named('test') {
 	useJUnitPlatform()
