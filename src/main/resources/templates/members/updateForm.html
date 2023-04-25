@@ -12,17 +12,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     </style>
 </th:block>
 
@@ -41,7 +30,7 @@
             <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
         </div>
 
-        <button type="submit" class="btn btn-primary">수정하기</button>
+        <button type="submit" class="btn btn-primary">하기</button>
 
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
     </form>

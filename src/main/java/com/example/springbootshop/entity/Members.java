@@ -6,6 +6,7 @@ import com.example.springbootshop.dto.MembersUpdateDto;
 import com.example.springbootshop.vo.Address;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "members")
+@ToString
 public class Members extends BaseTimeEntity {
 
     @Id
