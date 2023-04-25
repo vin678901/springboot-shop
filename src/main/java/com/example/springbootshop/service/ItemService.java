@@ -94,4 +94,8 @@ public class ItemService {
     public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
         return itemRepository.getMainItemPage(itemSearchDto, pageable);
     }
+
+    public Item getItem(Long itemId) {
+        return itemRepository.findById(itemId).orElseThrow(EntityNotFoundException::new);
+    }
 }

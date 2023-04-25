@@ -1,6 +1,5 @@
 package com.example.springbootshop.service;
 
-import com.example.springbootshop.dto.MembersFormDto;
 import com.example.springbootshop.dto.MembersUpdateDto;
 import com.example.springbootshop.entity.Members;
 import com.example.springbootshop.repository.MembersRepository;
@@ -22,6 +21,10 @@ public class MembersService implements UserDetailsService {
     private final MembersRepository membersRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    public Members getMembers(String email) {
+        return membersRepository.findByEmail(email);
+    }
 
     public Members saveMembers(Members members) {
         validateDuplicateMembers(members);

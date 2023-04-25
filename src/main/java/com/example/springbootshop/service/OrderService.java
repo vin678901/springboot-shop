@@ -129,5 +129,20 @@ public class OrderService {
         Order order = orderRepository.findById(orderId).orElseThrow(EntityNotFoundException::new);
         order.completeDelivery();
     }
+
+    public Long orders(List<OrderDto> orderDtoList, String email) {
+        Members members = membersRepository.findByEmail(email);
+        List<OrderItem> orderItemList = new ArrayList<>();
+
+        for (OrderDto orderDto : orderDtoList) {
+            Item item = itemRepository.findById(orderDto.getItemId()).orElseThrow(EntityNotFoundException::new);
+            orderItemList.add(OrderItem.createOrderItem(item, orderDto.getCount()));
+        }
+
+        Order order = Order.createOrder(members, orderItemList);
+        orderRepository.save(order);
+
+        return order.getId();
+    }
 }
 
