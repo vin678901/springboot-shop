@@ -68,8 +68,12 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
         return null;
     }
 
+    private BooleanExpression createdByLike(String createdBy) {
+        return item.createdBy.like(createdBy);
+    }
+
     @Override
-    public Page<Item> getSellerItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
+    public Page<Item> getSellerItemPage(ItemSearchDto itemSearchDto, Pageable pageable, String createdBy) {
 
         List<Item> content = queryFactory
                 .selectFrom(item)
@@ -77,7 +81,9 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom {
                         searchSellStatusEq(itemSearchDto.getSearchSellStatus()),
                         searchByLike(itemSearchDto.getSearchBy(),
                                 itemSearchDto.getSearchQuery()),
-                        searchCategoryStatusEq(itemSearchDto.getSearchCategory()))
+                        searchCategoryStatusEq(itemSearchDto.getSearchCategory()),
+                        createdByLike(createdBy)//여기 추가
+                )//수정해야댐
                 .orderBy(QItem.item.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,8 +73,8 @@ public class ItemController {
     }
 
     @PostMapping("/seller/item/{itemId}")
-    public String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult, Model model,
-                             @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList) {
+    public String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult,
+                             @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "item/itemForm";
@@ -95,9 +96,10 @@ public class ItemController {
     }
 
     @GetMapping(value = {"/seller/items", "/seller/items/{page}"})
-    public String itemManage(ItemSearchDto itemSearchDto, Model model, @PathVariable("page") Optional<Integer> page) {
+    public String itemManage(ItemSearchDto itemSearchDto, Model model, @PathVariable("page") Optional<Integer> page, Principal principal) {
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
-        Page<Item> items = itemService.getSellerItemPage(itemSearchDto, pageable);
+        String createdBy = principal.getName();
+        Page<Item> items = itemService.getSellerItemPage(itemSearchDto, pageable, createdBy);
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
         model.addAttribute("maxPage", 5);

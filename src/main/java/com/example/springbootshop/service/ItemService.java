@@ -86,8 +86,8 @@ public class ItemService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Item> getSellerItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
-        return itemRepository.getSellerItemPage(itemSearchDto, pageable);
+    public Page<Item> getSellerItemPage(ItemSearchDto itemSearchDto, Pageable pageable, String createdBy) {
+        return itemRepository.getSellerItemPage(itemSearchDto, pageable, createdBy);
     }
 
     @Transactional(readOnly = true)

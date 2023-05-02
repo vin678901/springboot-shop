@@ -41,29 +41,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
 
 </th:block>
@@ -79,28 +56,6 @@
         .fieldError {
             color: #bd2130;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -166,9 +121,8 @@
         <p th:if="${#fields.hasErrors('stockNumber')}" th:errors="*{stockNumber}" class="fieldError">Incorrect data</p>
 
         <!--상품 설명-->
-        <div class="mb-3">
+        <div class="input-group">
             <span class="input-group-text">상품 상세 설명</span>
-            <label for="exampleFormControlTextarea1" class="form-label"></label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                       th:field="*{itemDetail}"></textarea>
         </div>
@@ -177,6 +131,7 @@
         <div th:if="${#lists.isEmpty(itemFormDto.itemImgDtoList)}">
             <div class="form-label" th:each="num: ${#numbers.sequence(1,5)}">
                 <div class="custom-file img-div">
+
                     <input type="file" class="custom-file-input" name="itemImgFile">
                     <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
                 </div>
@@ -184,8 +139,9 @@
         </div>
 
         <div th:if="${not #lists.isEmpty(itemFormDto.itemImgDtoList)}">
-            <div class="form-group" th:each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
-                <div class="custom-file img-div">
+            <div class="input-group mb-3" th:each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
+                <div class="mb-3">
+                    <!--                    <input class="form-control" type="file" id="formFile">-->
                     <input type="file" class="custom-file-input" name="itemImgFile">
                     <input type="hidden" name="itemImgIds" th:value="${itemImgDto.id}">
                     <label class="custom-file-label"
