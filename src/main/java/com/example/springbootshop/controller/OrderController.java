@@ -6,6 +6,7 @@ import com.example.springbootshop.dto.OrderHistDto;
 import com.example.springbootshop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,7 @@ public class OrderController {
     //order
     @GetMapping(value = {"/orders", "orders/{page}"})
     public String orderHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model) {
-        Pageable pageable = Pageable.ofSize(5);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);
 
         Page<OrderHistDto> orderHistDtoList = orderService.getOrderList(principal.getName(), pageable);
         model.addAttribute("orders", orderHistDtoList);
@@ -95,7 +96,7 @@ public class OrderController {
 
     @PostMapping("/delivery/{orderId}/prepare")
     public @ResponseBody ResponseEntity prepareOrder(@PathVariable("orderId") Long orderId, Principal principal) {
-        
+
         orderService.prepareOrder(orderId);
         return new ResponseEntity<Long>(orderId, HttpStatus.OK);
     }
