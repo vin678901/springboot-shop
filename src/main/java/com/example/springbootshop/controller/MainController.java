@@ -20,11 +20,9 @@ public class MainController {
 
     @GetMapping("/")
     public String main(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model) {
-//        Pageable pageable = Pageable.ofSize(5);
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-        
+
         Page<MainItemDto> items = itemService.getMainItemPage(itemSearchDto, pageable);
-        //여기서 item.imgUrl이 제대로 전달되지 않는 것으로 추정됨
         model.addAttribute("items", items);
         model.addAttribute("itemSearchDto", itemSearchDto);
         model.addAttribute("maxPage", 5);

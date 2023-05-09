@@ -4,7 +4,6 @@ import com.example.springbootshop.dto.CartDetailDto;
 import com.example.springbootshop.dto.CartItemDto;
 import com.example.springbootshop.dto.CartOrderDto;
 import com.example.springbootshop.service.CartService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -81,12 +80,12 @@ public class CartController {
         List<CartOrderDto> cartOrderDtoList = cartOrderDto.getCartOrderDtoList();
 
         if (cartOrderDtoList == null || cartOrderDtoList.size() == 0) {
-            return new ResponseEntity<String>("cartItem is empty", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("오류가 발생했습니다.", HttpStatus.BAD_REQUEST);
         }
 
         for (CartOrderDto cartOrder : cartOrderDtoList) {
             if (!cartService.validateCartItem(cartOrder.getCartItemId(), principal.getName())) {
-                return new ResponseEntity<String>("cartItem is empty", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<String>("오류가 발생했습니다.", HttpStatus.BAD_REQUEST);
             }
         }
 

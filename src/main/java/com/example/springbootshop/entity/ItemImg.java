@@ -1,6 +1,5 @@
 package com.example.springbootshop.entity;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

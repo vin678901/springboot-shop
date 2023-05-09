@@ -3,10 +3,8 @@ package com.example.springbootshop.entity;
 import com.example.springbootshop.constant.Category;
 import com.example.springbootshop.constant.ItemSellStatus;
 import com.example.springbootshop.dto.ItemFormDto;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.util.Lazy;
 
 import javax.persistence.*;
 

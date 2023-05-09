@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.springbootshop.constant.DeliveryStatus.PREPARING;
 
 @Entity
 @Table(name = "orders")

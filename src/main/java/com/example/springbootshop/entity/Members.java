@@ -2,7 +2,6 @@ package com.example.springbootshop.entity;
 
 import com.example.springbootshop.constant.Role;
 import com.example.springbootshop.dto.MembersFormDto;
-import com.example.springbootshop.dto.MembersUpdateDto;
 import com.example.springbootshop.vo.Address;
 import lombok.Getter;
 import lombok.Setter;

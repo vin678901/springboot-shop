@@ -1,7 +1,5 @@
 package com.example.springbootshop.service;
 
-import com.example.springbootshop.constant.DeliveryStatus;
-import com.example.springbootshop.constant.OrderStatus;
 import com.example.springbootshop.dto.OrderDeliveryDto;
 import com.example.springbootshop.dto.OrderDto;
 import com.example.springbootshop.dto.OrderHistDto;

@@ -1,8 +1,6 @@
 package com.example.springbootshop.dto;
 
-import com.example.springbootshop.constant.Role;
 import com.example.springbootshop.vo.Address;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;

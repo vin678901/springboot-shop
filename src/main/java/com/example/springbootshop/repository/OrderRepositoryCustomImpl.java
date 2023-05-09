@@ -2,7 +2,6 @@ package com.example.springbootshop.repository;
 
 import com.example.springbootshop.dto.ItemSearchDto;
 import com.example.springbootshop.entity.Item;
-import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
